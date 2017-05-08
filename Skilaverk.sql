@@ -19,18 +19,6 @@ CREATE TABLE flokkur
     Nafn VARCHAR(255)
 );
 
-CREATE TABLE lag
-(
-	ID INT PRIMARY KEY NOT NULL,
-    NAFN VARCHAR(255),
-    Lengd DEC(2,1),
-    Texti VARCHAR(255),
-    FlokkurID INT,
-    DiskurID INT,
-    FOREIGN KEY (FlokkurID) REFERENCES flokkur(ID),
-    FOREIGN KEY (DiskurID) REFERENCES diskur(ID)
-);
-
 CREATE TABLE tegund
 (
 	ID INT PRIMARY KEY NOT NULL,
@@ -57,6 +45,18 @@ CREATE TABLE diskur
     FOREIGN KEY (UtgefandiID) REFERENCES utgefandi(ID)
 );
 
+CREATE TABLE lag
+(
+	ID INT PRIMARY KEY NOT NULL,
+    Nafn VARCHAR(255),
+    Lengd DECIMAL(4,3),
+    Texti VARCHAR(255),
+    FlokkurID INT,
+    DiskurID INT,
+    FOREIGN KEY (FlokkurID) REFERENCES flokkur(ID),
+    FOREIGN KEY (DiskurID) REFERENCES diskur(ID)
+);
+
 INSERT INTO flytjandi(ID,Nafn,Faedingardagur,Danardagur,Lysing,Tegund_Flytjanda)
 VALUES
 (1,"Elvis Presley","1935-1-8","1977-8-16","King Of Rock","Rock"),
@@ -71,9 +71,9 @@ VALUES
 
 INSERT INTO flokkur(ID,Nafn)
 VALUES
-(1,"Rock"),
-(2,"Classic"),
-(3,"Pop");
+(1,"21. Öldinn"),
+(2,"20. Öldinn"),
+(3,"19. Öldinn Og Niður");
 
 INSERT INTO tegund(ID,Nafn)
 VALUES
@@ -109,7 +109,25 @@ VALUES
 (8,"Deadache","2008-10-23",6,8,8),
 (9,"Scary Monsters And Nice Sprites","2010-10-22",7,9,9);
 
-
-
-
-SELECT * FROM flytjandi;
+INSERT INTO lag(ID,Nafn,Lengd,Texti,FlokkurID,DiskurID)
+VALUES
+    (1,"Hot dog",1.11,"Jerry Leiber-Mike Stoller",2,1),
+    (2,"Mean Woman Blues",2.44,"Claude Demetrius",2,1),
+    (3,"Got A Lot O' Livin' To Do",2.33,"Aaron Schroeder, Ben Weisman",2,1),
+    (4,"Ég Er Til",4.05,"Guðmundur Magni Ásgeirsson",1,2),
+    (5,"Austur Þýsk",3.51,"Guðmundur Magni Ásgeirsson",1,2),
+    (6,"Eitthvað er í loftinu",3.47,"Guðmundur Magni Ásgeirsson",1,2),
+    (7,"Ah Pieta Signori Miei",1.49,"W.A Mozart",3,3),
+    (8,"Or Sai Chi L'onore",6.58,"W.A Mozart",3,3),
+    (9,"Violin Concerto in D major",6.51,"Johann Sebastian Bach",3,4),
+    (10,"Violin Concerto in E minor",6.43,"Johann Sebastian Bach",3,4),
+    (11,"Madness",4.41,"Matt Bellamy",1,5),
+    (12,"Supremacy",4.55,"Matt Bellamy",1,5),
+    (13,"Panic Station",3.04,"Matt Bellamy",1,5),
+    (14,"Survival",4.17,"Matt Bellamy",1,5),
+    (15,"Where them girls at",5.12,"Mike Caren",1,6),
+    (16,"With out you",3.28,"Taio Cruz",1,6),
+    (17,"Infinte",4.11,"Eminem",1,7),
+    (18,"Monsters keep me company",5.29,"Mr Amen",1,8),
+	(19,"Kill everybody",4.58,"Sonny Moore",1,9),
+    (20,"With you",6.29,"Sonny Moore",1,9);
