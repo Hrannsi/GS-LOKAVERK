@@ -1,10 +1,12 @@
+DROP DATABASE 2304003260_lokaverk;
+
 CREATE database 2304003260_lokaverk;
 USE 2304003260_lokaverk;
 
 CREATE TABLE flytjandi
 (
 	ID INT PRIMARY KEY NOT NULL,
-    NAFN VARCHAR(255),
+    Nafn VARCHAR(255),
     Faedingardagur DATE,
     Danardagur DATE,
     Lysing VARCHAR(255),
@@ -133,6 +135,25 @@ VALUES
     (20,"With you",6.29,"Sonny Moore",9,1,9);
 
 SELECT diskur.ID as "Diskur", lag.Nafn FROM diskur INNER JOIN lag ON diskur.ID=lag.DiskurID WHERE diskur.ID = 5;
+
 SELECT flytjandi.Nafn, lag.Nafn FROM flytjandi INNER JOIN lag ON flytjandi.ID=lag.FlytjandiID WHERE flytjandi.ID = 1;
+
+SELECT diskur.ID as "Diskur", lag.Nafn, tegund.Nafn FROM tegund
+INNER JOIN diskur ON tegund.ID=diskur.TegundID
+INNER JOIN lag on diskur.ID= lag.DiskurID WHERE tegund.ID = 1;
+
 SELECT * FROM lag WHERE Lengd > 5;
+
 SELECT * FROM diskur WHERE Utgafudagur > "2010-12-31";
+
+SELECT utgefandi.Nafn ,diskur.Nafn, flytjandi.Nafn, diskur.Utgafudagur FROM utgefandi
+INNER JOIN diskur ON utgefandi.ID=diskur.UtgefandiID
+INNER JOIN diskur ON flytjandi.ID=diskur.FlytjandiID
+ORDER BY utgefandi.Nafn ASC LIMIT 2;
+
+SELECT utgefandi.Nafn, Diskur.Nafn, flytjandi.Nafn,diskur.Utgafudagur FROM utgefandi
+INNER JOIN diskur ON utgefandi.ID=diskur.UtgefandiID
+INNER JOIN diskur d2 ON flytjandi.ID= diskur.FlytjandiID
+ORDER BY utgefandi.Nafn LIMIT 2;
+
+select * from flytjandi;
