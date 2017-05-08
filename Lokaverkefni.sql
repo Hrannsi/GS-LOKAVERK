@@ -131,3 +131,8 @@ VALUES
     (18,"Monsters keep me company",5.29,"Mr Amen",8,1,8),
 	(19,"Kill everybody",4.58,"Sonny Moore",9,1,9),
     (20,"With you",6.29,"Sonny Moore",9,1,9);
+
+SELECT diskur.ID as "Diskur", lag.Nafn FROM diskur INNER JOIN lag ON diskur.ID=lag.DiskurID WHERE diskur.ID = 5;
+SELECT flytjandi.Nafn, lag.Nafn FROM flytjandi INNER JOIN lag ON flytjandi.ID=lag.FlytjandiID WHERE flytjandi.ID = 1;
+SELECT * FROM lag WHERE Lengd > 5;
+SELECT * FROM diskur WHERE Utgafudagur > "2010-12-31";
